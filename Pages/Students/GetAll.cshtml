@@ -1,0 +1,48 @@
+﻿@page
+@model WebApp.Pages.Students.GetAllModel
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+	var data = ViewData["data"] as List<Student>;
+}
+<div class="text-center">
+	<h1>Bảng <span class="badge badge-dark">STUDENT</span></h1>
+</div>
+<table class="table" border="1">
+	<thead class="table-dark">
+		<tr>
+			<th>MSSV</th>
+			<th>Tên</th>
+			<th>Ngày sinh</th>
+			<th>Giới tính</th>
+			<th>Mã lớp</th>
+			<th>Thêm / Sửa / Xóa</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in data)
+		{
+			<tr>
+				<td>@item.Code</td>
+				<td>@item.Name</td>
+				<td>@item.YearOfBirth</td>
+				@if (item.Gender == false) {
+					<td>Nam</td>
+				}else { <td>Nữ</td>}
+				<td>@item.Class.ClassName</td>
+				<td>
+					<div class="btn-group">
+						<a class="btn btn-outline-dark" href="/Students/Get?id=@item.Id"><i class="fas fa-eye"></i></a>
+						<a class="btn btn-outline-dark" href="/Students/Update?id=@item.Id"><i class="fas fa-edit"></i></a>
+						<a class="btn btn-outline-dark" onclick="return confirm('Xác nhận xóa?')" href="/Students/Delete?id=@item.Id"><i class="fas fa-trash-alt"></i></a>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-outline-dark" href="/Students/AddStudent"><i class="fas fa-plus fa-2x"></i></a>
+

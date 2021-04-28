@@ -1,0 +1,61 @@
+﻿@page
+@model WebApp.Pages.Students.AddStudentModel
+@{
+}
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@{
+	var dataClass = ViewData["data"] as List<Class>;
+}
+
+<h1 class="text-center">THÊM SINH VIÊN</h1>
+<form method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<label for="code">Mã sinh viên </label>
+		<input type="text" name="Code" id="code" class="form-control" required maxlength="20" placeholder="Nhập mã sinh viên" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="name">Tên sinh viên </label>
+		<input type="text" name="Name" id="name" class="form-control" required maxlength="50" placeholder="Nhập tên sinh viên" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="yearOfBirth">Năm sinh </label>
+		<input type="text" name="YearOfBirth" id="yearOfBirth" class="form-control" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="gender">Giới tính </label>
+		<select name="Gender" id="gender" class="form-control">
+			<option>---Chọn giới tính---</option>
+			<option value="false">Nam</option>
+			<option value="true">Nữ</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="address">Địa chỉ </label>
+		<input type="text" name="Address" class="form-control" required maxlength="100" id="address" placeholder="Nhập địa chỉ" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="avatar">Chọn avatar</label>
+		<input type="file" name="Avatar" class="form-control-file" id="avatar" required maxlength="500" />
+	</div>
+	<div class="form-group">
+		<label for="detail">Chi tiết </label>
+		<input type="text" name="Detail" class="form-control" required id="detail"/>
+	</div>
+	<div class="form-group">
+		<label for="schoolId">Trường </label>
+		<select id="schoolId" name="ClassId" class="form-control">
+			<option>---Chọn lớp---</option>
+			@foreach (var item in dataClass)
+			{
+				<option value="@item.Id">@item.ClassName</option>
+			}
+		</select>
+	</div>
+	<button class="btn btn-outline-primary" type="submit"><i class="fas fa-user-plus fa-2x"></i></button>
+	<a class="btn btn-outline-success" href="/Students/GetAll"><i class="fas fa-user-times fa-2x"></i></a>
+	<a href="/Students/GetAll" class="btn btn-link"><i class="fas fa-list-ul fa-2x"></i></a>
+</form>

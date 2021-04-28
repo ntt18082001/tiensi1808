@@ -1,0 +1,30 @@
+﻿@page
+@model WebApp.Pages.Schools.GetModel
+@using WebApp.Database
+@{ 
+	Layout = "/Pages/Shared/_Layout.cshtml"; // Đường dẫn đến file _Layout
+}
+@{ 
+	var data = ViewData["data"] as School;
+}
+<table class="table mt-5" border="1">
+	<thead class="table-dark">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Address</th>
+			<th>PhoneNumber</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>@data.Id</td>
+			<td> @data.Name</td>
+			<td>@data.Address</td>
+			<td>@data.PhoneNumber</td>
+			<td>@data.Email</td>
+		</tr>
+	</tbody>
+</table>
+<a href="/Schools/GetAll" class="btn btn-outline-secondary"><i class="fas fa-backward"></i></a>

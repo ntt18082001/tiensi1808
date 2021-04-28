@@ -1,0 +1,31 @@
+﻿@page
+@model WebApp.Pages.Schools.InsertModel
+
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">THÊM TRƯỜNG</h1>
+<form method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<label for="name">Tên trường </label>
+		<input type="text" name="Name" class="form-control" required maxlength="100" id="name" placeholder="Nhập tên" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="address">Địa chỉ </label>
+		<input type="text" name="Address" class="form-control" required maxlength="100" id="address" placeholder="Nhập địa chỉ" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="phone">Số điện thoại </label>
+		<input type="text" name="PhoneNumber" class="form-control" required maxlength="15" id="phone" placeholder="Nhập số điện thoại" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="email">Email </label>
+		<input type="email" name="Email" class="form-control" required maxlength="50" id="email" placeholder="Nhập email" autocomplete="off" />
+	</div>
+	<button class="btn btn-outline-primary" type="submit"><i class="fas fa-user-plus fa-2x"></i></button>
+	<a class="btn btn-outline-success" href="/Schools/GetAll"><i class="fas fa-user-times fa-2x"></i></a>
+	<a href="/Schools/GetAll" class="btn btn-link" type="button"><i class="fas fa-list-ul fa-2x"></i></a>
+</form>

@@ -1,0 +1,43 @@
+﻿@page
+@model WebApp.Pages.Schools.GetAllModel
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+	var data = ViewData["data"] as List<School>;
+}
+<div class="text-center">
+	<h1>Bảng <span class="badge badge-dark">SCHOOL</span></h1>
+</div>
+<table class="table" border="1">
+	<thead class="table-dark">
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>PhoneNumber</th>
+			<th>Email</th>
+			<th>Thêm / Sửa / Xóa</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in data)
+		{
+			<tr>
+				<td>@item.Name</td>
+				<td>@item.Address</td>
+				<td>@item.PhoneNumber</td>
+				<td>@item.Email</td>
+				<td>
+					<div class="btn-group">
+						<a class="btn btn-outline-dark" href="/Schools/Get?id=@item.Id"><i class="fas fa-eye"></i></a>
+						<a class="btn btn-outline-dark" href="/Schools/Update?id=@item.Id" ><i class="fas fa-edit"></i></a>
+						<a class="btn btn-outline-dark" onclick="return confirm('Xác nhận xóa?')" href="/Schools/Delete?id=@item.Id"><i class="fas fa-trash-alt"></i></a>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-outline-dark" href="/Schools/Insert"><i class="fas fa-plus fa-2x"></i></a>

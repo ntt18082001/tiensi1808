@@ -1,0 +1,60 @@
+﻿@page
+@model WebApp.Pages.Classes.UpdateModel
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@{
+	var dataSchool = ViewData["dataSchool"] as List<School>;
+	var data = ViewData["data"] as Class;
+}
+
+<h1 class="text-center">THÊM LỚP</h1>
+<form method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<label for="code">Mã lớp </label>
+		<input type="text" value="@data.Code" name="Code" id="code"
+			   class="form-control" required maxlength="20"
+			   placeholder="Nhập mã lớp" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="className">Tên lớp </label>
+		<input type="text" value="@data.ClassName"
+			   name="ClassName" id="className" class="form-control"
+			   required maxlength="50" placeholder="Nhập tên lớp" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="teacherName">Tên giảng viên </label>
+		<input type="text" value="@data.TeacherName"
+			   name="TeacherName" id="teacherName" class="form-control" required
+			   maxlength="50" placeholder="Nhập tên giảng viên" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="schoolId">Trường </label>
+		<select id="schoolId" name="SchoolId" class="form-control">
+			<option>---Chọn trường---</option>
+			@foreach (var item in dataSchool)
+			{
+
+				if (item.Id == data.SchoolId)
+				{
+					<option value="@item.Id" selected="selected">@item.Name</option>
+				}
+				else
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
+			}
+		</select>
+	</div>
+	<button class="btn btn-outline-primary" type="submit">
+		<i class="fas fa-user-edit fa-2x"></i>
+	</button>
+	<a class="btn btn-outline-success" href="/Classes/GetAll">
+		<i class="fas fa-user-times fa-2x"></i>
+	</a>
+	<a href="/Classes/GetAll" class="btn btn-link">
+		<i class="fas fa-list-ul fa-2x"></i>
+	</a>
+</form>

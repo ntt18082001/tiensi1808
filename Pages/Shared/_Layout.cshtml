@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>ASP.NET Razor Page</title>
+	<link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container mt-4">
+		<div class="row">
+			<a href="/" class="btn btn-lg btn-link">Trang chủ</a>
+			<a href="/Schools/GetAll" class="btn btn-lg btn-link">
+				<span class="badge badge-dark">SCHOOL</span>
+			</a>
+			<a href="/Classes/Getall" class="btn btn-lg btn-link">
+				<span class="badge badge-dark">CLASS</span>
+			</a>
+			<a href="/Students/GetAll" class="btn btn-lg btn-link">
+				<span class="badge badge-dark">STUDENT</span>
+			</a>
+		</div>
+		<div class="row">
+			<div class="col">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+</body>
+</html>

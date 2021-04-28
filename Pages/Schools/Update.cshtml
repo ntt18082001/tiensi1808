@@ -1,0 +1,34 @@
+﻿@page
+@model WebApp.Pages.Schools.UpdateModel
+@using WebApp.Database
+@{
+	Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+@{ 
+	var data = ViewData["data"] as School;
+}
+
+<h1 class="text-center">Cập nhật dữ liệu có id = @data.Id</h1>
+<form method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<label for="name">Tên trường: </label>
+		<input type="text" name="Name" class="form-control" required maxlength="100" value="@data.Name" id="name" placeholder="Nhập tên" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="address">Địa chỉ: </label>
+		<input type="text" name="Address" class="form-control" required maxlength="100" value="@data.Address" id="address" placeholder="Nhập địa chỉ" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="phone">Số điện thoại: </label>
+		<input type="text" name="PhoneNumber" class="form-control" required maxlength="15" value="@data.PhoneNumber" id="phone" placeholder="Nhập số điện thoại" autocomplete="off" />
+	</div>
+	<div class="form-group">
+		<label for="email">Email: </label>
+		<input type="email" name="Email" class="form-control" required maxlength="50" value="@data.Email" id="email" placeholder="Nhập email" autocomplete="off" />
+	</div>
+	<button class="btn btn-outline-primary" type="submit"><i class="fas fa-user-edit fa-2x"></i></button>
+	<a class="btn btn-outline-success" href="/Schools/GetAll"><i class="fas fa-user-times fa-2x"></i></a>
+	<a href="/Schools/GetAll" class="btn btn-link" type="button"><i class="fas fa-list-ul fa-2x"></i></a>
+</form>
